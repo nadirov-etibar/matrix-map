@@ -7,19 +7,28 @@ let output = document.getElementById("a");
 
 
 let areaOfMatrix = () => {
-    for(let i = 0; i < n; i++){
-        for (let j = 0; j < m; j++){
-            sum = sum + 1;
+    let row = matrix.length;
 
-            if (matrix[i][j] === matrix[i][j+1]){
-                sum = sum - 1;
+    for(let i = 0; i < n; i++){
+        let column = matrix[i].length;
+        for (let j = 0; j < m; j++){
+
+            if (j + 1 < column && matrix[i][j] === matrix[i][j+1]){
+                if (i + 1 < row && matrix[i][j] === matrix[i + 1][j] && matrix[i][j] !== matrix[i+1][j+1]) {
+                  sum = sum - 1;
+                }
+                continue;
             }
 
-            if (typeof matrix[i+1] !== "undefined"){
-                if (matrix[i][j] === matrix[i+1][j]){
+            if(i + 1 < row && matrix[i][j] == matrix[i+1][j]){
+                if(j + 1 < column && matrix[i][j] === matrix[i][j+1] && matrix[i][j] !== matrix[i+1][j+1]){
                     sum = sum - 1;
                 }
+
+                continue;
             }
+
+            sum = sum + 1;
         }
     }
 
